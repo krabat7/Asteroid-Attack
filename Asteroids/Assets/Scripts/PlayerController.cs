@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private float thrustSpeed = 1.0f;
+    [SerializeField] float thrustSpeed = 1.0f;
 
-    private float turnSpeed = 1.0f;
+    [SerializeField] float turnSpeed = 1.0f;
 
     private Rigidbody2D _rigidbody;
 
