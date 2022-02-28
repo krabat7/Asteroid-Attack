@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    [SerializeField] Sprite[] _sprites;
+    public Sprite[] _sprites;
 
-    [SerializeField] float size = 1.0f;
+    public float size = 1.0f;
 
-    [SerializeField] float minSize = 0.5f;
+    public float minSize = 0.5f;
 
-    [SerializeField] float maxSize = 1.5f;
+    public float maxSize = 1.5f;
+
+    public float speed = 50.0f;
+
+    public float maxLifeTime = 30.0f;
 
     private SpriteRenderer _spriteRenderer;
 
@@ -29,4 +33,9 @@ public class Asteroid : MonoBehaviour
         _rigidbody.mass = this.size;
     }
 
+    public void SetTrajectory(Vector2 direction)
+    {
+        _rigidbody.AddForce(direction * this.speed);
+        Destroy(this.gameObject, maxLifeTime);
+    }
 }
