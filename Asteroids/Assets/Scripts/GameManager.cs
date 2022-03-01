@@ -1,11 +1,15 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerController _player;
 
-    [SerializeField] ParticleSystem explosion;
+    [SerializeField] ParticleSystem _explosion;
+
+    [SerializeField] Text _coinText;
 
     [SerializeField] float respawnTime = 3.0f;
 
@@ -14,11 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] int lives = 3;
 
     [SerializeField] float score = 0.0f;
-    
+
     public void AsteroidDestroyed(Asteroid asteroid)
     {
-        this.explosion.transform.position = asteroid.transform.position;
-        this.explosion.Play();
+        this._explosion.transform.position = asteroid.transform.position;
+        this._explosion.Play();
 
         if (asteroid.size < 0.7f)
         {
@@ -36,8 +40,8 @@ public class GameManager : MonoBehaviour
 
     public void PlayerDied()
     {
-        this.explosion.transform.position = this._player.transform.position;
-        this.explosion.Play();
+        this._explosion.transform.position = this._player.transform.position;
+        this._explosion.Play();
 
         this.lives--;
 
@@ -71,5 +75,10 @@ public class GameManager : MonoBehaviour
     private void TurnOnCollisions()
     {
         this._player.gameObject.layer = LayerMask.NameToLayer("Player");
+    }
+
+    void Update()
+    {
+        _coinText.text = this.score.ToString();
     }
 }
