@@ -1,2 +1,3 @@
 # Asteroid-Attack
-Ремейк игры Asteroid 1979
+Ремейк игры Asteroid 1979.
+
