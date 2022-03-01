@@ -54,7 +54,10 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        //ToDo
+        this.lives = 3;
+        this.score = 0;
+
+        Invoke(nameof(TurnOnCollisions), this.respawnInvulnurbilityTime);
     }
 
     private void Respawn()
