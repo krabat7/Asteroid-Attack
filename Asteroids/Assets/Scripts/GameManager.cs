@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] PlayerController _player;
 
     [SerializeField] ParticleSystem _explosion;
+
+    [SerializeField] GameObject _gameOverMenu;
+
+    [SerializeField] GameObject _gameScene;
 
     [SerializeField] Text _coinText;
 
@@ -58,10 +63,13 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        this.lives = 3;
-        this.score = 0;
+        _gameScene.SetActive(false);
+        _gameOverMenu.SetActive(true);
+    }
 
-        Invoke(nameof(TurnOnCollisions), this.respawnInvulnurbilityTime);
+    public void Restart()
+    {
+        SceneManager.LoadScene(1, LoadSceneMode.Single);
     }
 
     private void Respawn()
