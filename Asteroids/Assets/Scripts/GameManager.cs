@@ -13,12 +13,25 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] int lives = 3;
 
-    [SerializeField] int score = 0;
+    [SerializeField] float score = 0.0f;
     
     public void AsteroidDestroyed(Asteroid asteroid)
     {
         this.explosion.transform.position = asteroid.transform.position;
         this.explosion.Play();
+
+        if (asteroid.size < 0.7f)
+        {
+            this.score += 100.0f;
+        }
+        else if (asteroid.size < 1.0f)
+        {
+            this.score += 75.0f;
+        }
+        else
+        {
+            this.score += 50.0f;
+        }
     }
 
     public void PlayerDied()
